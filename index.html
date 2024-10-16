@@ -1,169 +1,122 @@
-<!-- original : https://codepen.io/SeanNorton/pen/LWBXQL -->
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
 
-    <style>
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 
-        /*CSS RESETS*/
+	<!-- Google Font -->
 
-body{
-    background-color: #fff;
-    line-height: 1.6;
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Silkscreen&display=swap" rel="stylesheet">
 
-}
+	<!-------->
 
-h1 {
-    margin-top: 0;
-}
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			-webkit-box-sizing: border-box;
+			box-sizing: border-box;
+		}
 
 
-/*CSS START*/
+		.navMenu {
+			font-family: 'Silkscreen', sans-serif;
+			padding: 8px;
+			text-align: center;
+			margin: 7px auto;
+			width: fit-content;
+		}
 
-.full-table {
-    display: table;
-    height: 100%;
-    width: 100%;
-}
+		.navMenu a {
+			color: #272727;
+			text-decoration: none;
+			text-transform: uppercase;
+			display: inline-block;
+			padding: 6px;
+		}
 
-.table-cell {
-    display: table-cell;
-    vertical-align: middle;
-    text-align: center;
-}
+		.background {
+			background-color: #ece5f0;
+		}
 
-.card {
-    padding: 10px 25px 10px 25px;
-    border-radius: 10px;
-    background: #009688;
-    color: #fff;
-    display: inline-block;
-    box-shadow: 2px 2px 1px 0px #295C7B;
-}
+		.border {
+			border: 1px solid #cccccc;
 
-.card:hover {
-    margin-top: 2px;
-    box-shadow: none;
-}
+		}
 
-.clock {
-    display: inline-block;
-    font-family: 'Roboto', sans-serif;
-    font-weight: bold;
-    font-size: 1.2em;
-    /* padding-left: 20px; */
-}
+		.navMenu a:hover {
 
-.time {
-    display: inline-block;
-    min-width: 37px;
-}
-
-.colon {
-    font-size: 1.1em;
-    display: inline-block;
-}
-
-.date {
-    display: block;
-    min-width: 162px;
-    /* padding-right: 30px; */
-    /* border-right: 2px solid #295C7B; */
-    font-family: 'Roboto', sans-serif;
-    font-size: 1.2em;
-}
-.greet{
-    
-    min-width: 162px;
-    /* padding-right: 30px; */
-    font-family: 'Roboto', sans-serif;
-    font-size: 1.2em;
-}
-
-    </style>
+			color: #d09c0b;
+		}
+	</style>
 </head>
+
 <body>
-    <link href="https://fonts.googleapis.com/css?family=Lobster|Roboto:400,700" rel="stylesheet">
 
-<div class="full-table">
-  <div class="table-cell">
-    
-    <div class="card">
-        <div class="greet" id="greet"></div>
-      <div class="date" id="date"></div>
-      <div class="clock">
-        <div class="time" id="hour"></div>
-        <div class="colon">:</div>
-        <div class="time" id="min"></div>
-        <div class="colon">:</div>
-        <div class="time" id="sec"></div>
-      </div>
-    </div>
-    
-  </div>
-</div>
-
-<script>
-    function date() {
-var today = new Date();
-document.getElementById('date').innerHTML = today.toDateString();
-}
+	<nav class="navMenu  border">
+		<a id="home" onclick="navigate(this.id)" href="#"> <i class="fa-solid fa-house"></i> Home</a>
+		<a id="inbox" onclick="navigate(this.id)" href="#"> <i class="fa-solid fa-inbox"></i> Inbox</a>
+		<a id="week" onclick="navigate(this.id)" href="#"> <i class="fa-solid fa-calendar-week"></i> Planner</a>
+		<a id="projects" onclick="navigate(this.id)" href="#"> <i class="fa-solid fa-briefcase"></i> Projects</a>
+		<a id="tasks" onclick="navigate(this.id)" href="#"> <i class="fa-solid fa-list-check"></i> Tasks</a>
+		<a id="business" onclick="navigate(this.id)" href="#"> <i class="fa-solid fa-money-bill-wave"></i> Business</a>
+		<a id="knowledge" onclick="navigate(this.id)" href="#"> <i class="fa-solid fa-lightbulb"></i> Knowledge</a>
+		<a id="topics" onclick="navigate(this.id)" href="#"> <i class="fa-solid fa-layer-group"></i> Topics</a>
+		<a id="notes" onclick="navigate(this.id)" href="#"> <i class="fa-solid fa-book"></i> Notes</a>
+		<a id="media" onclick="navigate(this.id)" href="#"> <i class="fa-solid fa-bookmark"></i> Media</a>
+		<a id="resourses" onclick="navigate(this.id)" href="#"> <i class="fa-solid fa-wrench"></i> Resourses</a>
+		<a id="lifewiki" onclick="navigate(this.id)" href="#"> <i class="fa-solid fa-heart"></i> Lifewiki</a>
 
 
-function clock() {
-var today = new Date();
-var hour = zeros(twelveHour(today.getHours()));
-var minutes = zeros(today.getMinutes());
-var seconds = zeros(today.getSeconds());
-if(today.getHours() >=12){
-    seconds+=" pm"
-}
-else{
-    seconds+=" am"
-}
-hrs = today.getHours();
-if (hrs < 12)
-        greet = 'Good Morning  ';
-    else if (hrs >= 12 && hrs <= 17)
-        greet = 'Good Afternoon ';
-    else if (hrs >= 17 && hrs <= 24)
-        greet = 'Good Evening  ';
-// console.log(today.toLocaleTimeString());
-document.getElementById('greet').innerHTML = greet;
-document.getElementById('hour').innerHTML = hour;
-document.getElementById('min').innerHTML = minutes;
-document.getElementById('sec').innerHTML = seconds;
-}
 
-function twelveHour(hour) {
-if (hour > 12) {
-    return hour -= 12 
-} else if (hour === 0) {
-    return hour = 12;
-} else {
-    return hour
-}
-}
-// adds zero infront of single digit number
-function zeros(num) {
-if (num < 10) {
-    num = '0' + num
-};
-return num;
-}
+	</nav>
 
-function dateTime() {
-date();
-clock();
-setTimeout(dateTime, 500);
-}
 
-dateTime()
-// END
-</script>
+	<script>
+
+		let direction = "horizontal";
+		if (direction === "vertical") {
+			document.head.insertAdjacentHTML("beforeend", `<style>.navMenu a {display: block; text-align:left; margin:7px} i{width:15px; margin-right:5px} .navMenu{margin:3px}</style>`)
+		}
+
+
+		function navigate(id) {
+
+			if (id == 'home')
+				window.open("https://example.com", '_blank').focus();
+			else if (id == "inbox")
+				window.open("https://example.com", '_blank').focus();
+			else if (id == "week")
+				window.open("https://example.com", '_blank').focus();
+			else if (id == "month")
+				window.open("https://example.com", '_blank').focus();
+			else if (id == "projects")
+				window.open("https://example.com", '_blank').focus();
+			else if (id == "business")
+				window.open("https://example.com", '_blank').focus();
+			else if (id == "tasks")
+				window.open("https://example.com", '_blank').focus();
+			else if (id == "knowledge")
+				window.open("https://example.com", '_blank').focus();
+			else if (id == "topics")
+				window.open("https://example.com", '_blank').focus();
+			else if (id == "notes")
+				window.open("https://example.com", '_blank').focus();
+			else if (id == "media")
+				window.open("https://example.com", '_blank').focus();
+			else if (id == "resourses")
+				window.open("https://example.com3", '_blank').focus();
+			else if (id == "lifewiki")
+				window.open("https://example.com", '_blank').focus();
+
+		}
+	</script>
+
 
 </body>
+
 </html>
